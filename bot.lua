@@ -25,7 +25,7 @@ function bot:init() -- The function run when the bot is started or reloaded.
 
 	self.plugins = {} -- Load plugins.
 	for _,v in ipairs(self.config.plugins) do
-		local p = require('plugins.'..v)
+		local p = dofile('plugins/'..v..'.lua')
 		table.insert(self.plugins, p)
 		if p.init then p.init(self) end
 	end
