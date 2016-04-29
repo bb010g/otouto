@@ -53,9 +53,10 @@ function time:action(msg)
 	else
 		utcoff = utilities.pretty_float(utcoff)
 	end
-	local output = '`' .. os.date('!%I:%M %p\n', timestamp) .. os.date('!%A, %B %d, %Y\n', timestamp) .. jdat.timeZoneName .. ' (UTC' .. utcoff .. ')``'
+	local output = os.date('!%I:%M %p\n', timestamp) .. os.date('!%A, %B %d, %Y\n', timestamp) .. jdat.timeZoneName .. ' (UTC' .. utcoff .. ')'
+	output = '```\n' .. output .. '\n```'
 
-	bindings.sendReply(self, msg, output)
+	bindings.sendMessage(self, msg.chat.id, output, true, msg.message_id, true)
 
 end
 
