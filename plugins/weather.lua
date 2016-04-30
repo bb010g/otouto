@@ -57,7 +57,7 @@ function weather:action(msg)
 	local fahrenheit = string.format('%.2f', celsius * (9/5) + 32)
 	local output = '`' .. celsius .. '°C | ' .. fahrenheit .. '°F, ' .. jdat.weather[1].description .. '.`'
 
-	bindings.sendReply(self, msg, output)
+	bindings.sendMessage(self, msg.chat.id, output, true, msg.message_id, true)
 
 end
 

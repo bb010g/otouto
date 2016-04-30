@@ -22,6 +22,7 @@ function translate:action(msg)
 	if not input then
 		if msg.reply_to_message and msg.reply_to_message.text then
 			input = msg.reply_to_message.text
+			msg.message_id = msg.reply_to_message.message_id
 		else
 			bindings.sendMessage(self, msg.chat.id, translate.doc, true, msg.message_id, true)
 			return
@@ -45,7 +46,7 @@ function translate:action(msg)
 	local output = jdat.text[1]
 	output = '*Translation:*\n"' .. utilities.md_escape(output) .. '"'
 
-	bindings.sendReply(self, msg.reply_to_message or msg, output)
+	bindings.sendMessage(self, msg.chat.id, output, true, msg.message_id, true)
 
 end
 
